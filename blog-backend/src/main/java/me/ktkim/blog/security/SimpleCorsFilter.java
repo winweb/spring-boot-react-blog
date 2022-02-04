@@ -1,7 +1,5 @@
 package me.ktkim.blog.security;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,13 +26,5 @@ public class SimpleCorsFilter implements Filter {
             return;
         }
         chain.doFilter(request, response);
-    }
-
-    @Override
-    public void destroy() {
-    }
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
     }
 }

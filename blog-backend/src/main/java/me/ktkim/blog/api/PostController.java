@@ -1,13 +1,12 @@
 package me.ktkim.blog.api;
 
+import lombok.extern.slf4j.Slf4j;
 import me.ktkim.blog.common.Exception.ApiException;
 import me.ktkim.blog.model.domain.Post;
 import me.ktkim.blog.model.dto.PostDto;
 import me.ktkim.blog.security.CurrentUser;
 import me.ktkim.blog.security.service.CustomUserDetails;
 import me.ktkim.blog.service.PostService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +21,10 @@ import java.util.Optional;
 /**
  * @author Kim Keumtae
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class PostController {
-
-    private final Logger log = LoggerFactory.getLogger(PostController.class);
 
     @Autowired
     private PostService postService;
@@ -34,22 +32,29 @@ public class PostController {
     @GetMapping(value = "/posts/{id}")
     public ResponseEntity<PostDto> getPost(@PathVariable Long id) {
         log.debug("REST request to get Post : {}", id);
+
         Post post = postService.findForId(id).orElseThrow(() -> new ApiException("Post does not exist", HttpStatus.NOT_FOUND));
+
         return new ResponseEntity<>(new PostDto(post), HttpStatus.OK);
     }
 
     @GetMapping(value = "/posts")
     public ResponseEntity<List<PostDto>> getPostList(Pageable pageable) {
+
         log.debug("REST request to get Posts : {}", pageable);
+
         Page<Post> posts = postService.findAllByOrderByCreatedDateDescPageable(pageable);
-        Page<PostDto> postDto = posts.map(post -> new PostDto((post)));
+
+        Page<PostDto> postDto = posts.map(PostDto::new);
         return new ResponseEntity<>(postDto.getContent(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/posts")
     public ResponseEntity<PostDto> registerPost(@RequestBody PostDto postDto,
                                                 @CurrentUser CustomUserDetails customUserDetails) {
+
         log.debug("REST request to save Post : {}", postDto);
+
         if (postDto.getId() != null) {
             throw new ApiException("A new post cannot already have an ID", HttpStatus.CONFLICT);
         } else {
@@ -61,11 +66,14 @@ public class PostController {
     @PutMapping(value = "/posts/{id}")
     public ResponseEntity<PostDto> editPost(@PathVariable Long id,
                                             @RequestBody PostDto postDto) {
+
         log.debug("REST request to edit Post : {}", postDto);
+
         Optional<Post> post = postService.findForId(id);
         if (!post.isPresent()) {
             throw new ApiException("Post could not be found", HttpStatus.NOT_FOUND);
         }
+
         Optional<PostDto> returnPost = postService.editPost(postDto);
         return returnPost.map(response -> {
             return new ResponseEntity<PostDto>(response, HttpStatus.OK);
@@ -74,7 +82,9 @@ public class PostController {
 
     @DeleteMapping(value = "/posts/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
+
         log.debug("REST request to delete Post id : {}", id);
+
         if (id == null) {
             throw new ApiException("Post id cannot null", HttpStatus.NOT_FOUND);
         } else {

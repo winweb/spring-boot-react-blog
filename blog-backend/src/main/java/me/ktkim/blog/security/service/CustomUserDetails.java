@@ -1,7 +1,7 @@
 package me.ktkim.blog.security.service;
 
-import me.ktkim.blog.model.domain.User;
 import me.ktkim.blog.common.util.AuthoritiesConstants;
+import me.ktkim.blog.model.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

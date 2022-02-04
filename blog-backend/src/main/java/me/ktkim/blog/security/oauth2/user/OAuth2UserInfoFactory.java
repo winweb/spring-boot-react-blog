@@ -4,7 +4,6 @@ import me.ktkim.blog.common.Exception.ApiException;
 import me.ktkim.blog.common.util.AuthProvider;
 import org.springframework.http.HttpStatus;
 
-
 import java.util.Map;
 
 public class OAuth2UserInfoFactory {

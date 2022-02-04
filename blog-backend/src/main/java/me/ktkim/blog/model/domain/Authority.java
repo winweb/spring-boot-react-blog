@@ -1,5 +1,7 @@
 package me.ktkim.blog.model.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.ktkim.blog.model.BaseModel;
 
 import javax.persistence.Column;
@@ -8,12 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  * @author Kim Keumtae
  */
 @Entity
 @Table(name = "authority")
+@Getter
+@Setter
 public class Authority extends BaseModel {
 
     private static final long serialVersionUID = 1L;
@@ -23,14 +28,6 @@ public class Authority extends BaseModel {
     @Id
     @Column(length = 20)
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -43,7 +40,7 @@ public class Authority extends BaseModel {
 
         Authority authority = (Authority) o;
 
-        return !(name != null ? !name.equals(authority.name) : authority.name != null);
+        return Objects.equals(name, authority.name);
     }
 
     @Override

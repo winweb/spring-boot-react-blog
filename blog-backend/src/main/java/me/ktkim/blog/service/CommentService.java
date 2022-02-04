@@ -5,14 +5,10 @@ import me.ktkim.blog.model.domain.Comment;
 import me.ktkim.blog.model.domain.Post;
 import me.ktkim.blog.model.domain.User;
 import me.ktkim.blog.model.dto.CommentDto;
-import me.ktkim.blog.model.dto.PostDto;
 import me.ktkim.blog.repository.CommentRepository;
 import me.ktkim.blog.repository.PostRepository;
-import me.ktkim.blog.security.SecurityUtil;
 import me.ktkim.blog.security.service.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

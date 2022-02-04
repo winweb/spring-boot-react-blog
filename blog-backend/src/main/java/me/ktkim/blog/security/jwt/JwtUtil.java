@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -23,17 +22,18 @@ import java.util.stream.Collectors;
  */
 @Service
 public class JwtUtil {
+
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     private static final String AUTHORITIES_KEY = "authorities";
 
-    private String secretKey;
+    private final String secretKey;
 
-    private long tokenValidityInMilliseconds;
+    private final long tokenValidityInMilliseconds;
 
-    private long tokenValidityInMillisecondsForRememberMe;
+    private final long tokenValidityInMillisecondsForRememberMe;
 
-    private ApplicationProperties applicationProperties;
+    private final ApplicationProperties applicationProperties;
 
     public JwtUtil(ApplicationProperties applicationProperties) {
         this.applicationProperties = applicationProperties;

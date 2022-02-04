@@ -1,5 +1,6 @@
 package me.ktkim.blog.api;
 
+import lombok.extern.slf4j.Slf4j;
 import me.ktkim.blog.common.Exception.ApiException;
 import me.ktkim.blog.common.util.AuthProvider;
 import me.ktkim.blog.model.domain.User;
@@ -10,8 +11,6 @@ import me.ktkim.blog.security.CurrentUser;
 import me.ktkim.blog.security.jwt.JwtAuthResponse;
 import me.ktkim.blog.security.jwt.JwtUtil;
 import me.ktkim.blog.security.service.CustomUserDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +30,10 @@ import java.util.Collections;
 /**
  * @author Kim Keumtae
  */
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired(required = true)
     private AuthenticationManager authenticationManager;

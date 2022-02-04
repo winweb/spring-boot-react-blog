@@ -1,12 +1,11 @@
 package me.ktkim.blog.api;
 
+import lombok.extern.slf4j.Slf4j;
 import me.ktkim.blog.model.domain.Comment;
 import me.ktkim.blog.model.dto.CommentDto;
 import me.ktkim.blog.security.CurrentUser;
 import me.ktkim.blog.security.service.CustomUserDetails;
 import me.ktkim.blog.service.CommentService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +18,10 @@ import java.util.stream.Collectors;
 /**
  * @author Kim Keumtae
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class CommentController {
-
-    private final Logger log = LoggerFactory.getLogger(CommentController.class);
 
     @Autowired
     private CommentService commentService;
@@ -39,7 +37,7 @@ public class CommentController {
             return new ResponseEntity<List<CommentDto>>(comments
                     .get()
                     .stream()
-                    .map(comment -> new CommentDto(comment))
+                    .map(CommentDto::new)
                     .collect(Collectors.toList()), HttpStatus.OK);
         }
     }

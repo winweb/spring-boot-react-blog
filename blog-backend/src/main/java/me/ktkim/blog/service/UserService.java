@@ -1,16 +1,14 @@
 package me.ktkim.blog.service;
 
+import lombok.extern.slf4j.Slf4j;
 import me.ktkim.blog.common.Exception.ApiException;
 import me.ktkim.blog.common.util.AuthProvider;
+import me.ktkim.blog.common.util.AuthoritiesConstants;
 import me.ktkim.blog.model.domain.Authority;
 import me.ktkim.blog.model.domain.User;
 import me.ktkim.blog.model.dto.UserDto;
 import me.ktkim.blog.repository.AuthorityRepository;
 import me.ktkim.blog.repository.UserRepository;
-import me.ktkim.blog.common.util.AuthoritiesConstants;
-import me.ktkim.blog.security.SecurityUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,11 +26,10 @@ import java.util.stream.Collectors;
 /**
  * @author Kim Keumtae
  */
+@Slf4j
 @Service
 @Transactional
 public class UserService {
-
-    private Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserRepository userRepository;
@@ -44,10 +41,9 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerAccount(UserDto.Create userDto) {
-        userRepository.findByEmail(userDto.getEmail())
-                .ifPresent(user -> {
-                    throw new ApiException("Email Already exists.", HttpStatus.BAD_REQUEST);
-                });
+        userRepository.findByEmail(userDto.getEmail()).ifPresent(user -> {
+            throw new ApiException("Email Already exists.", HttpStatus.BAD_REQUEST);
+        });
 
         User user = this.createUser(userDto.getEmail().toLowerCase(), userDto.getPassword(), userDto.getUserName());
         return user;
@@ -64,13 +60,16 @@ public class UserService {
         authority.ifPresent(auth -> authorities.add(auth));
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+
         log.debug("Created Information for User: {}", newUser);
+
         return newUser;
     }
 
     public void updateUser(Long id, String email, String name, boolean activated) {
         userRepository.findOneById(id).ifPresent(user -> {
             user.setEmail(email);
+
             log.debug("Changed Information for User: {}", user);
         });
     }

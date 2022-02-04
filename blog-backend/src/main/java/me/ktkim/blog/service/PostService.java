@@ -2,8 +2,8 @@ package me.ktkim.blog.service;
 
 import me.ktkim.blog.common.Exception.BadRequestException;
 import me.ktkim.blog.model.domain.Post;
-import me.ktkim.blog.model.dto.PostDto;
 import me.ktkim.blog.model.domain.User;
+import me.ktkim.blog.model.dto.PostDto;
 import me.ktkim.blog.repository.PostRepository;
 import me.ktkim.blog.security.SecurityUtil;
 import me.ktkim.blog.security.service.CustomUserDetails;
