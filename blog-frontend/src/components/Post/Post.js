@@ -35,11 +35,11 @@ const Post = ({ post, comments, deletePost, isAuthenticated, currentUser, writeC
             {moment(post.get("lastModifiedDate")).format("lll")}
           </div>
 
-          <hr />
+          <hr/>
         </div>
         <div className={cx('post-body')}>{renderHTML(post.get("body"))}</div>
       </div>
-      <hr></hr>
+      <hr/>
       <CommentList
         isAuthenticated={isAuthenticated}
         loading={false}
@@ -50,7 +50,5 @@ const Post = ({ post, comments, deletePost, isAuthenticated, currentUser, writeC
     </Fragment>
   )
 };
-
-
 
 export default Post;

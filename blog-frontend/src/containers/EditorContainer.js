@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as postActions from "store/modules/post";
-import TextEditor from "components/TextEditor";
+import * as postActions from "../store/modules/post";
+import TextEditor from "../components/TextEditor";
 import { withRouter } from 'react-router-dom';
 
 class EditorContainer extends Component {

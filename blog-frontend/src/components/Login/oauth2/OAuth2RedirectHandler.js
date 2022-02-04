@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import * as authActions from "store/modules/auth";
+import * as authActions from "../../../store/modules/auth";
 
 class OAuth2RedirectHandler extends Component {
     getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 
-        var results = regex.exec(this.props.location.search);
+        let results = regex.exec(this.props.location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 

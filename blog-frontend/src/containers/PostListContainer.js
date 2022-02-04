@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as postActions from "store/modules/post";
-import PostList from "components/PostList";
+import * as postActions from "../store/modules/post";
+import PostList from "../components/PostList";
 
 class PostContainer extends Component {
   getPostList = async (page, size) => {

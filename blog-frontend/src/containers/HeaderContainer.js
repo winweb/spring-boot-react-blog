@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import * as authActions from "store/modules/auth";
+import * as authActions from "../store/modules/auth";
 import Header from '../components/common/Header/Header';
 
 class HeaderContainer extends Component {

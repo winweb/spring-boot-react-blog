@@ -3,8 +3,8 @@ import { createAction, handleActions } from 'redux-actions';
 import { Map, fromJS } from 'immutable';
 import { pender } from 'redux-pender';
 
-import * as api from 'lib/api';
-import { Storage } from 'lib/storage';
+import * as api from '../../lib/api.js';
+import { Storage } from '../../lib/storage.js';
 
 //action types
 const LOGIN = 'auth/LOGIN'

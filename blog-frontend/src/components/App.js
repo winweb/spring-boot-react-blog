@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { PostPage, PostListPage, EditorPage, NotFoundPage } from 'pages';
-import LoginContainer from 'containers/LoginContainer'
+import { PostPage, PostListPage, EditorPage, NotFoundPage } from '../pages';
+import LoginContainer from '../containers/LoginContainer'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import * as authActions from "store/modules/auth";
-import OAuth2RedirectHandler from 'components/Login/oauth2/OAuth2RedirectHandler';
+import * as authActions from "../store/modules/auth";
+import OAuth2RedirectHandler from '../components/Login/oauth2/OAuth2RedirectHandler';
 
 class App extends Component {
 
