@@ -13,18 +13,12 @@ import java.util.List;
 @ConfigurationProperties(prefix = "application", ignoreUnknownFields = false)
 public class ApplicationProperties {
 
-    private final Datasource datasource = new Datasource();
-
     private final Security security = new Security();
 
     private final Google google = new Google();
 
     public Google getGoogle() {
         return google;
-    }
-
-    public Datasource getDatasource() {
-        return datasource;
     }
 
     public static class Google {
@@ -98,49 +92,6 @@ public class ApplicationProperties {
             public void setUserInfoUri(String userInfoUri) {
                 this.userInfoUri = userInfoUri;
             }
-        }
-    }
-
-    public static class Datasource {
-
-        private boolean cachePrepStmts = true;
-
-        private int prepStmtCacheSize = 250;
-
-        private int prepStmtCacheSqlLimit = 2048;
-
-        private boolean useServerPrepStmts = true;
-
-        public boolean isCachePrepStmts() {
-            return cachePrepStmts;
-        }
-
-        public void setCachePrepStmts(boolean cachePrepStmts) {
-            this.cachePrepStmts = cachePrepStmts;
-        }
-
-        public int getPrepStmtCacheSize() {
-            return prepStmtCacheSize;
-        }
-
-        public void setPrepStmtCacheSize(int prepStmtCacheSize) {
-            this.prepStmtCacheSize = prepStmtCacheSize;
-        }
-
-        public int getPrepStmtCacheSqlLimit() {
-            return prepStmtCacheSqlLimit;
-        }
-
-        public void setPrepStmtCacheSqlLimit(int prepStmtCacheSqlLimit) {
-            this.prepStmtCacheSqlLimit = prepStmtCacheSqlLimit;
-        }
-
-        public boolean isUseServerPrepStmts() {
-            return useServerPrepStmts;
-        }
-
-        public void setUseServerPrepStmts(boolean useServerPrepStmts) {
-            this.useServerPrepStmts = useServerPrepStmts;
         }
     }
 
